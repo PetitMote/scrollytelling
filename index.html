@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+</head>
+<body>
+<main>
+    <div class="side-by-side">
+        <div>
+            <scroll-scene step="1">
+                <h2>Scene 1</h2>
+                <p>First scene</p>
+            </scroll-scene>
+            <scroll-scene step="2">
+                <h2>Scene 2</h2>
+                <p>Second scene</p>
+            </scroll-scene>
+            <scroll-scene step="3">
+                <h2>Scene 3</h2>
+                <p>Third scene</p>
+            </scroll-scene>
+        </div>
+        <figure id="figure">
+            <div id="map"></div>
+        </figure>
+    </div>
+    <div class="full">
+        <scroll-scene step="hide map"><p>On continue</p></scroll-scene>
+    </div>
+</main>
+<script src="https://unpkg.com/scroll-scene-element/dist/scroll-scene-element.js" type="module"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script src="side-by-side.js" type="module"></script>
+</body>
+</html>
