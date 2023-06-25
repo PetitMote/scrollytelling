@@ -12,7 +12,9 @@
 </head>
 <body>
 <header>
-    <a href="https://github.com/PetitMote"><img class="logo" src="logo.png" alt="Avatar de Moté"></a>
+    <a href="https://github.com/PetitMote" style="display: inline-flex">
+        <img class="logo" src="logo.png" alt="Avatar de Moté">
+    </a>
     <h1>Les endroits en France où personne n’habite</h1>
     <nav>
         <ul>
@@ -22,6 +24,20 @@
     </nav>
 </header>
 <main>
+    <div class="full">
+        <figure>
+            <canvas id="chart"></canvas>
+        </figure>
+        <scroll-scene step="hello">
+            <div>
+                <h2>Hello</h2>
+                <p>Cette page de scrollytelling est un test.</p>
+            </div>
+        </scroll-scene>
+        <scroll-scene>
+            <div><p>Faut trouver des trucs à dire</p></div>
+        </scroll-scene>
+    </div>
     <div class="side-by-side">
         <div>
             <scroll-scene step="1">
@@ -37,12 +53,15 @@
                 <p>Third scene</p>
             </scroll-scene>
         </div>
-        <figure id="figure">
+        <figure>
             <div id="map"></div>
         </figure>
     </div>
-    <div class="full">
-        <scroll-scene step="hide map"><p>On continue</p></scroll-scene>
+    <div class="paging">
+        <scroll-scene step="hide map">
+            <h2>Scène pleine page</h2>
+            <p>On continue</p>
+        </scroll-scene>
     </div>
 </main>
 <footer></footer>
@@ -50,6 +69,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 <script src="side-by-side.js" type="module"></script>
 </body>
 </html>
