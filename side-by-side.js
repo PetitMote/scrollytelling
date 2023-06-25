@@ -1,14 +1,14 @@
-let map = L.map('map').setView([51.505, -0.09], 13);
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+// let map = L.map('map').setView([51.505, -0.09], 13);
+//
+// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     maxZoom: 19,
+//     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// }).addTo(map);
 
 
 const chartSupFrance = document.getElementById('chart-superficie-france').querySelector('canvas');
 
-new Chart(chartSupFrance, {
+let chartSup = new Chart(chartSupFrance, {
     type: 'pie',
     data: {
         labels: ['Aucun habitant', 'Présence d’habitants'],
@@ -51,13 +51,21 @@ document.addEventListener('scroll-scene-enter', (event) => {
             break;
         case 'detail-chart-1':
             show_figure('chart-superficie-france');
+            chartSup.update();
             break;
-        case '3':
-            map.setView([51.505, -0.09], 5);
+        case 'detail-chart-2':
+            chartSup.data = {
+                labels : ['Truc', 'Deux', 'Test'],
+                datasets: [
+                    {
+                        label: 'Surface',
+                        data: [10, 20, 30],
+                        borderWidth: 1
+                    }
+                ]
+            };
+            chartSup.update();
             break;
-        // case 'hide map':
-        //     document.querySelector('#map').setAttribute('hidden', 'true')
-        //     break;
     }
 })
 
@@ -73,10 +81,10 @@ document.addEventListener('scroll-scene-exit', (event) => {
         case 'detail-1':
             hide_figure('aucun-habitant-detail');
             break;
-        // case 'hide map':
-        //     if (!event.detail.isScrollingDown) {
-        //         document.querySelector('#map').removeAttribute('hidden')
-        //     }
-        //     break;
+        case 'detail-chart-2':
+            if(!event.detail.isScrollingDown) {
+                hide_figure('chart-superficie-france');
+            }
+            break;
     }
 })

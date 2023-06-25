@@ -167,7 +167,7 @@ scroll-scene {
     opacity: 100%;
 }
 
-figure > * {
+figure {
     visibility: collapse;
     opacity: 0;
     transition: opacity 1s linear;
