@@ -31,6 +31,7 @@ function hide_figure (id) {
     if (element.style.visibility === 'visible') {
         element.addEventListener("transitionend", () => {
             element.style.visibility = 'collapse';
+            // element.style.display = 'none';
         }, {once: true});
         element.style.opacity = '0';
     }

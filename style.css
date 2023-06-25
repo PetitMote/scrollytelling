@@ -167,11 +167,11 @@ scroll-scene {
     opacity: 100%;
 }
 
-figure {
-    visibility: collapse;
-    opacity: 0;
-    transition: opacity 1s linear;
-}
+/*figure {*/
+/*    visibility: collapse;*/
+/*    opacity: 0;*/
+/*    transition: opacity 1s linear;*/
+/*}*/
 
 canvas {
     height: 100%;
@@ -191,10 +191,13 @@ canvas {
 }
 
 .side-by-side figure, .full figure {
-    height: 100vh;
     position: sticky;
+    height: 100vh;
     top: 0;
     max-width: 100%;
+    visibility: collapse;
+    opacity: 0;
+    transition: opacity 1s linear;
 }
 
 
@@ -205,11 +208,10 @@ canvas {
     padding: 20px 0;
 }
 
-.full > figure {
-    height: 100vh;
+.full figure {
     z-index: -999;
 }
-.full > figure > img {
+.full figure > img {
     display: block;
     height: 100%;
     margin: auto;
