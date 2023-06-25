@@ -24,28 +24,37 @@
     </nav>
 </header>
 <main>
+    <p style="text-align: center; padding-top: 50px">Scroll to read the story!</p>
     <div class="full">
-        <figure>
-            <canvas id="chart"></canvas>
+        <figure id="france">
+            <img src="data/france.png">
+        </figure>
+        <figure id="france-aucun-habitant">
+            <img src="data/france-aucun-habitant.png">
         </figure>
         <scroll-scene step="hello">
             <div>
-                <h2>Hello</h2>
-                <p>Cette page de scrollytelling est un test.</p>
+                <p>La France métropolitaine compte 550 milliards mètres carrés.</p>
+                <p>(55 millions d’hectares)</p>
             </div>
         </scroll-scene>
         <scroll-scene>
-            <div><p>Faut trouver des trucs à dire</p></div>
+            <div><p>Il s’agit d’un des plus grands pays d’Europe. Mais quelle est la partie non habitée ?</p></div>
+        </scroll-scene>
+        <scroll-scene step="aucun-habitant">
+            <div><p>Regardons cela ensemble !</p></div>
         </scroll-scene>
     </div>
     <div class="side-by-side">
         <div>
-            <scroll-scene step="1">
-                <h2>Scene 1</h2>
-                <p>First scene</p>
+            <scroll-scene step="detail-1">
+                <h2>Des endroits vides en France</h2>
+                <p>Sur la carte ci-contre, en violet apparaissent les carrés d’1km de côté sans aucun habitant reconsé
+                    en 2017 par l’Insee / Filosofi.</p>
+                <p>On peut voir qu’il reste des lieux vides, notamment les montagnes, mais aussi les Landes ou la Champagne.</p>
             </scroll-scene>
-            <scroll-scene step="2">
-                <h2>Scene 2</h2>
+            <scroll-scene step="detail-chart-1">
+                <h2>En superficie</h2>
                 <p>Second scene</p>
             </scroll-scene>
             <scroll-scene step="3">
@@ -53,9 +62,17 @@
                 <p>Third scene</p>
             </scroll-scene>
         </div>
-        <figure>
-            <div id="map"></div>
-        </figure>
+        <div class="side-figures">
+            <figure id="aucun-habitant-detail">
+                <img src="data/france-aucun-habitant.png">
+            </figure>
+            <figure id="chart-superficie-france">
+                <canvas></canvas>
+            </figure>
+            <figure>
+                <div id="map"></div>
+            </figure>
+        </div>
     </div>
     <div class="paging">
         <scroll-scene step="hide map">

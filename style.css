@@ -86,6 +86,18 @@ a:visited {
     color: inherit;
 }
 
+img {
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+p {
+    text-align: justify;
+    margin: 10px 0;
+}
 
 /* Header formatting */
 header {
@@ -155,6 +167,18 @@ scroll-scene {
     opacity: 100%;
 }
 
+figure > * {
+    visibility: collapse;
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+
+canvas {
+    height: 100%;
+    margin: 10px auto;
+}
+
+
 .side-by-side {
     padding: 20px 0;
     display: grid;
@@ -166,11 +190,14 @@ scroll-scene {
     padding: 5vh 5vw;
 }
 
-.side-by-side > figure, .full > figure {
+.side-by-side figure, .full figure {
     height: 100vh;
     position: sticky;
     top: 0;
+    max-width: 100%;
 }
+
+
 
 .full {
     min-height: 100vh;
@@ -179,7 +206,13 @@ scroll-scene {
 }
 
 .full > figure {
+    height: 100vh;
     z-index: -999;
+}
+.full > figure > img {
+    display: block;
+    height: 100%;
+    margin: auto;
 }
 
 .full scroll-scene > div {
@@ -194,17 +227,20 @@ scroll-scene {
     background-color: var(--background-color-transparent);
 }
 
+
 .paging {
     padding: 50px 20px;
     min-height: 100vh;
     width: 50vw;
     margin: auto;
 }
+
 @media (width < 800px) {
     .paging {
         width: 75vw;
     }
 }
+
 @media (width < 600px) {
     .paging {
         width: 100vw;
@@ -216,9 +252,4 @@ scroll-scene {
 
 #map {
     height: 100%;
-}
-
-#chart {
-    height: 100%;
-    margin: 10px auto;
 }
