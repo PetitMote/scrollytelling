@@ -1,31 +1,140 @@
-html {
-    font-family: Montserrat, sans-serif;
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    box-sizing: border-box; /* Added box-sizing */
     margin: 0;
     padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*End of CSS reset*/
+
+html {
+    font-family: Montserrat, sans-serif;
+    font-size: 16pt;
+    --main-color: #0F1626;
+    --background-color: #F5F5F5;
+    color: var(--main-color);
+    background: var(--background-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    font-weight: bold;
 }
 
 h1 {
-    text-align: center;
+    font-size: 1.8rem;
 }
 
 h2 {
-    text-align: center;
+    font-size: 1.5rem;
 }
 
-p {
-    font-size: 14pt;
+a:visited {
+    color: inherit;
 }
 
-figure {
+
+/* Header formatting */
+header {
+    display: flex;
+    /*background: var(--main-color);*/
+    /*color: var(--background-color);*/
+    height: 40pt;
+    box-shadow: 0 0 5px dimgrey;
+}
+
+.logo {
+    height: 40pt;
+}
+
+header > h1 {
+    margin: auto;
+}
+
+nav > ul {
+    display: flex;
+    margin: 0 10px;
     padding: 0;
-    margin: 0;
+    list-style-type: none;
+    height: 100%;
 }
 
+nav > ul > li {
+    display: flex;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+nav > ul > li > a:hover, nav > ul > li > a:focus {
+    outline: none;
+    border-color: var(--main-color);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 3px;
+    padding: 8px 13px;
+}
+
+nav > ul > li > a:active{
+    color: var(--background-color);
+    background: var(--main-color);
+}
+
+
+/* Scroll elements formatting */
 .side-by-side {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -35,7 +144,6 @@ figure {
     height: 100vh;
     position: sticky;
     top: 0;
-    background: cornflowerblue;
 }
 
 scroll-scene {
