@@ -132,6 +132,7 @@ nav > ul > li {
 }
 
 nav > ul > li > a {
+    color: inherit;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -167,12 +168,6 @@ scroll-scene {
     opacity: 100%;
 }
 
-/*figure {*/
-/*    visibility: collapse;*/
-/*    opacity: 0;*/
-/*    transition: opacity 1s linear;*/
-/*}*/
-
 canvas {
     height: 100%;
     margin: 10px auto;
@@ -195,9 +190,15 @@ canvas {
     height: 100vh;
     top: 0;
     max-width: 100%;
-    visibility: collapse;
-    opacity: 0;
-    transition: opacity 1s linear;
+    transition: opacity 500ms ease-in-out;
+}
+
+.chart {
+    display: flex;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 10% 5%;
 }
 
 

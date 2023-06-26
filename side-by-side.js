@@ -6,86 +6,88 @@
 // }).addTo(map);
 
 
-const chartSupFrance = document.getElementById('chart-superficie-france').querySelector('canvas');
-
-let chartSup = new Chart(chartSupFrance, {
-    type: 'pie',
-    data: {
+let chartsDict = {};
+let chartsData = {
+    superficieFrance: {
         labels: ['Aucun habitant', 'Présence d’habitants'],
         datasets: [{
             label: 'Surface (ha)',
-            data: [17500000, 37500000],
-            borderWidth: 1
+            data: [17500000, 37500000]
+        }]
+    },
+    superficieFranceRegions: {
+        labels: ['Aucun habitant', 'Présence d’habitants', 'Test'],
+        datasets: [{
+            label: 'Surface (ha)',
+            data: [17500000, 37500000, 20000000]
         }]
     }
-})
+};
 
-function show_figure (id) {
-    const element = document.querySelector(`#${id}`);
-    element.style.visibility = 'visible';
-    element.style.opacity = '100%';
+
+function switch_figure(figure_id, new_content) {
+    const element = document.getElementById(figure_id);
+    element.addEventListener(
+        "transitionend",
+        () => {
+            element.innerHTML = new_content;
+            element.style.opacity = '1';
+        }, {once: true}
+    );
+    element.style.opacity = '0';
 }
 
-function hide_figure (id) {
-    const element = document.querySelector(`#${id}`);
-    if (element.style.visibility === 'visible') {
-        element.addEventListener("transitionend", () => {
-            element.style.visibility = 'collapse';
-            // element.style.display = 'none';
-        }, {once: true});
-        element.style.opacity = '0';
-    }
-}
+
+function chart1(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    chartsDict['chart1'] = new Chart(canvas, {
+        type: 'pie',
+        data: chartsData.superficieFrance
+    })
+};
+
 
 document.addEventListener('scroll-scene-enter', (event) => {
-    const step = event.detail.element.getAttribute('step');
-    event.detail.element.classList.add('is-active');
-    switch (step) {
-        case 'hello':
-            show_figure('france');
-            break;
-        case 'aucun-habitant':
-            show_figure('france-aucun-habitant');
-            break;
-        case 'detail-1':
-            show_figure('aucun-habitant-detail');
-            break;
-        case 'detail-chart-1':
-            show_figure('chart-superficie-france');
-            chartSup.update();
-            break;
-        case 'detail-chart-2':
-            chartSup.data = {
-                labels : ['Truc', 'Deux', 'Test'],
-                datasets: [
-                    {
-                        label: 'Surface',
-                        data: [10, 20, 30],
-                        borderWidth: 1
-                    }
-                ]
-            };
-            chartSup.update();
-            break;
+        const step = event.detail.element.getAttribute('step');
+        event.detail.element.classList.add('is-active');
+        const readingDirection = event.detail.isScrollingDown;
+        switch (step) {
+            case 'intro-aucun-habitant':
+                switch_figure('intro', '<img src="data/france-aucun-habitant.png">');
+                break;
+            case 'detail-chart-1':
+                if (readingDirection) {
+                    switch_figure('side-figure', '<div class="chart"><canvas id="chart-1"></canvas></div>');
+                    setTimeout(chart1, 600, 'chart-1');
+                } else {
+                    chartsDict.chart1.data = chartsData.superficieFrance;
+                    chartsDict.chart1.update();
+                }
+                break;
+            case 'detail-chart-2':
+                chartsDict.chart1.data = chartsData.superficieFranceRegions;
+                chartsDict.chart1.update();
+                break;
+        }
     }
-})
+);
 
 document.addEventListener('scroll-scene-exit', (event) => {
     const step = event.detail.element.getAttribute('step');
     event.detail.element.classList.remove('is-active');
+    const readingDirection = event.detail.isScrollingDown;
     switch (step) {
-        case 'aucun-habitant':
-            if (!event.detail.isScrollingDown) {
-                hide_figure('france-aucun-habitant');
+        case 'intro-aucun-habitant':
+            if (!readingDirection) {
+                switch_figure('intro', '<img src="data/france.png">');
             }
             break;
-        case 'detail-1':
-            hide_figure('aucun-habitant-detail');
+        case 'detail-chart-1':
+            if (!readingDirection) {
+                switch_figure('side-figure', '<img src="data/france-aucun-habitant.png">');
+            }
             break;
         case 'detail-chart-2':
-            if(!event.detail.isScrollingDown) {
-                hide_figure('chart-superficie-france');
-            }
             break;
     }
-})
+});
