@@ -51,9 +51,12 @@ document.addEventListener('scroll-scene-enter', (event) => {
         const step = event.detail.element.getAttribute('step');
         event.detail.element.classList.add('is-active');
         const readingDirection = event.detail.isScrollingDown;
+
         switch (step) {
             case 'intro-aucun-habitant':
-                switch_figure('intro', '<img src="data/france-aucun-habitant.png">');
+                if (readingDirection) {
+                    switch_figure('intro', '<img src="data/france-aucun-habitant.png">');
+                }
                 break;
             case 'detail-chart-1':
                 if (readingDirection) {
