@@ -44,7 +44,7 @@ function chart1(canvasId) {
         type: 'pie',
         data: chartsData.superficieFrance
     })
-};
+}
 
 
 document.addEventListener('scroll-scene-enter', (event) => {
