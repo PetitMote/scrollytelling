@@ -21,6 +21,30 @@ let chartsData = {
             label: 'Surface (ha)',
             data: [17500000, 37500000, 20000000]
         }]
+    },
+    sideChart0: {
+        labels: ['Aucun habitant', 'Présence d’habitants'],
+        datasets: [{
+            label: 'Surface (ha)',
+            data: [1000, 1000]
+        }
+        ]
+    },
+    sideChart1: {
+        labels: ['Aucun habitant', 'Présence d’habitants'],
+        datasets: [{
+            label: 'Surface (ha)',
+            data: [500, 1500]
+        }
+        ]
+    },
+    sideChart2: {
+        labels: ['Aucun habitant', 'Présence d’habitants'],
+        datasets: [{
+            label: 'Surface (ha)',
+            data: [1500, 500]
+        }
+        ]
     }
 };
 
@@ -47,6 +71,15 @@ function chart1(canvasId) {
 }
 
 
+function side_chart() {
+    const canvas = document.getElementById('side-chart');
+    chartsDict['side-chart'] = new Chart(canvas, {
+        type: 'pie',
+        data: chartsData.sideChart0
+    })
+}
+
+
 document.addEventListener('scroll-scene-enter', (event) => {
         const step = event.detail.element.getAttribute('step');
         event.detail.element.classList.add('is-active');
@@ -64,11 +97,24 @@ document.addEventListener('scroll-scene-enter', (event) => {
                     setTimeout(chart1, 600, 'chart-1');
                 } else {
                     chartsDict.chart1.data = chartsData.superficieFrance;
+                    chartsDict.chart1.options = null;
                     chartsDict.chart1.update();
                 }
                 break;
             case 'detail-chart-2':
+                if (!chartsDict['side-chart'])
+                    side_chart();
                 chartsDict.chart1.data = chartsData.superficieFranceRegions;
+                chartsDict.chart1.options = {
+                    events: ['click'],
+                    onClick: (e) => {
+                        const point = chartsDict.chart1.getElementsAtEventForMode(e, 'point', {intersect: true}, true);
+                        if (point[0]) {
+                            chartsDict['side-chart'].data = chartsData['sideChart' + point[0].index];
+                            chartsDict['side-chart'].update();
+                        }
+                    }
+                };
                 chartsDict.chart1.update();
                 break;
         }
