@@ -190,7 +190,7 @@ canvas {
     height: 100vh;
     top: 0;
     max-width: 100%;
-    transition: opacity 500ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
 }
 
 .chart {

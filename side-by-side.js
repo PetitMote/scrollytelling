@@ -7,6 +7,12 @@
 
 const franceRegions = ['Île-de-France', 'Centre-Val de Loire', 'Bourgogne-Franche-Comté', 'Normandie', 'Hauts-de-France', 'Grand Est', 'Pays de la Loire', 'Bretagne', 'Nouvelle-Aquitaine', 'Occitanie', 'Auvergne-Rhône-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Corse'];
 
+/* À cause des réglages du CSS, le navigateur a tendance à redimensionner le canvas du graphique.
+   Par défaut, Chart.js désactive les animations de resize, et l’animation d’activation était supplantée par le resize
+   Changer le paramètre par défaut pour mettre la même valeur que l’activation permet de la récupérer.
+   Par contre, cela veut dire que redimensionner la fenêtre relance l’animation (normalement, c’est ok). */
+Chart.defaults.transitions.resize.animation.duration = Chart.defaults.transitions.active.animation.duration;
+
 let chartsDict = {}; // Stocke les références aux graphiques pour y réaccéder
 let chartsData = { // Stocke les données des graphiques pour initialiser ou les mettre à jour
     superficieFrance: {
@@ -216,7 +222,7 @@ document.addEventListener('scroll-scene-enter', (event) => {
             case 'detail-chart-sup-france':
                 if (readingDirection) {
                     switchFigure('side-figure', '<div class="chart"><canvas id="detail-1-chart"></canvas></div>');
-                    setTimeout(chartSupFrance, 600, 'detail-1-chart');
+                    setTimeout(chartSupFrance, 350, 'detail-1-chart');
                 } else {
                     switchChart('superficieFranceRegions', (canvasId) => chartSupFrance(canvasId), 'detail-1-chart');
                 }
