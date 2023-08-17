@@ -5,9 +5,10 @@
 //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 // }).addTo(map);
 
+const franceRegions = ['Île-de-France', 'Centre-Val de Loire', 'Bourgogne-Franche-Comté', 'Normandie', 'Hauts-de-France', 'Grand Est', 'Pays de la Loire', 'Bretagne', 'Nouvelle-Aquitaine', 'Occitanie', 'Auvergne-Rhône-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Corse'];
 
-let chartsDict = {};
-let chartsData = {
+let chartsDict = {}; // Stocke les références aux graphiques pour y réaccéder
+let chartsData = { // Stocke les données des graphiques pour initialiser ou les mettre à jour
     superficieFrance: {
         labels: ['Aucun habitant', 'Présence d’habitants'],
         datasets: [{
@@ -16,45 +17,126 @@ let chartsData = {
         }]
     },
     superficieFranceRegions: {
-        labels: ['Aucun habitant', 'Présence d’habitants', 'Test'],
+        labels: franceRegions,
         datasets: [{
-            label: 'Surface (ha)',
-            data: [17500000, 37500000, 20000000]
+            label: 'Surface sans habitants (ha)',
+            data: [831683, 2758933, 2710019, 2629621, 2021602, 2430091, 2956420, 2621520, 6538606, 5051758, 4931872, 1547147, 285071]
         }]
     },
-    sideChart0: {
-        labels: ['Aucun habitant', 'Présence d’habitants'],
-        datasets: [{
-            label: 'Surface (ha)',
-            data: [1000, 1000]
-        }
-        ]
-    },
-    sideChart1: {
-        labels: ['Aucun habitant', 'Présence d’habitants'],
-        datasets: [{
-            label: 'Surface (ha)',
-            data: [500, 1500]
-        }
-        ]
-    },
-    sideChart2: {
-        labels: ['Aucun habitant', 'Présence d’habitants'],
-        datasets: [{
-            label: 'Surface (ha)',
-            data: [1500, 500]
-        }
-        ]
-    }
+    superficieRegion: [ // Graphiques par région, sous forme de liste permettant de switcher par index via un graphique interactif
+        {// Île-de-France
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [375300, 831683]
+            }
+            ]
+        },
+        { // Centre-Val de Loire
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [1194057, 2758933]
+            }
+            ]
+        },
+        { // Bourgogne-Franche-Comté
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [2096078, 2710019]
+            }
+            ]
+        },
+        { // Normandie
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [379652, 2629621]
+            }
+            ]
+        },
+        { // Hauts-de-France
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [1173502, 2021602]
+            }
+            ]
+        },
+        { // Grand Est
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [3342443, 2430091]
+            }
+            ]
+        },
+        { // Pays de la Loire
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [284438, 2956420]
+            }
+            ]
+        },
+        { // Bretagne
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [125893, 2621520]
+            }
+            ]
+        },
+        { // Nouvelle-Aquitaine
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [1979767, 6538606]
+            }
+            ]
+        },
+        { // Occitanie
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [2284458, 5051758]
+            }
+            ]
+        },
+        { // Auvergne-Rhône-Alpes
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [2158392, 4931872]
+            }
+            ]
+        },
+        { // Provence-Alpes-Côte d'Azur
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [1619897, 1547147]
+            }
+            ]
+        },
+        { // Corse
+            labels: ['Aucun habitant', 'Présence d’habitants'],
+            datasets: [{
+                label: 'Surface (ha)',
+                data: [587082, 285071]
+            }
+            ]
+        }]
 };
 
 
-function switch_figure(figure_id, new_content) {
-    const element = document.getElementById(figure_id);
+function switchFigure(figureId, newContent) {
+    const element = document.getElementById(figureId);
     element.addEventListener(
         "transitionend",
         () => {
-            element.innerHTML = new_content;
+            element.innerHTML = newContent;
             element.style.opacity = '1';
         }, {once: true}
     );
@@ -62,20 +144,60 @@ function switch_figure(figure_id, new_content) {
 }
 
 
-function chart1(canvasId) {
+function switchChart(oldChartId, newChartFunction, canvasId) {
+    chartsDict[oldChartId].destroy();
+    delete chartsDict[oldChartId];
+    newChartFunction(canvasId);
+}
+
+
+function chartSupFrance(canvasId) {
     const canvas = document.getElementById(canvasId);
-    chartsDict['chart1'] = new Chart(canvas, {
+    chartsDict['superficieFrance'] = new Chart(canvas, {
         type: 'pie',
-        data: chartsData.superficieFrance
+        data: chartsData.superficieFrance,
     })
 }
 
 
-function side_chart() {
-    const canvas = document.getElementById('side-chart');
-    chartsDict['side-chart'] = new Chart(canvas, {
+function chartSupRegions(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    chartsDict['superficieFranceRegions'] = new Chart(canvas, {
+        type: 'bar',
+        data: chartsData.superficieFranceRegions,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            events: ['click'],
+            onClick: (e) => {
+                const point = chartsDict.superficieFranceRegions.getElementsAtEventForMode(e, 'point', {intersect: true}, true);
+                if (point[0]) {
+                    chartsDict.superficieRegion.data = chartsData.superficieRegion[point[0].index];
+                    chartsDict.superficieRegion.options.plugins.title.text = franceRegions[point[0].index];
+                    chartsDict.superficieRegion.update();
+                }
+            }
+        },
+    });
+}
+
+
+function chartSupRegion() {
+    const canvas = document.getElementById('chart-sup-region');
+    chartsDict['superficieRegion'] = new Chart(canvas, {
         type: 'pie',
-        data: chartsData.sideChart0
+        data: chartsData.superficieRegion[0],
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: franceRegions[0],
+                }
+            }
+        }
     })
 }
 
@@ -88,34 +210,21 @@ document.addEventListener('scroll-scene-enter', (event) => {
         switch (step) {
             case 'intro-aucun-habitant':
                 if (readingDirection) {
-                    switch_figure('intro', '<img src="data/france-aucun-habitant.png">');
+                    switchFigure('intro', '<img src="data/france-aucun-habitant.png">');
                 }
                 break;
-            case 'detail-chart-1':
+            case 'detail-chart-sup-france':
                 if (readingDirection) {
-                    switch_figure('side-figure', '<div class="chart"><canvas id="chart-1"></canvas></div>');
-                    setTimeout(chart1, 600, 'chart-1');
+                    switchFigure('side-figure', '<div class="chart"><canvas id="detail-1-chart"></canvas></div>');
+                    setTimeout(chartSupFrance, 600, 'detail-1-chart');
                 } else {
-                    chartsDict.chart1.data = chartsData.superficieFrance;
-                    chartsDict.chart1.options = null;
-                    chartsDict.chart1.update();
+                    switchChart('superficieFranceRegions', (canvasId) => chartSupFrance(canvasId), 'detail-1-chart');
                 }
                 break;
-            case 'detail-chart-2':
-                if (!chartsDict['side-chart'])
-                    side_chart();
-                chartsDict.chart1.data = chartsData.superficieFranceRegions;
-                chartsDict.chart1.options = {
-                    events: ['click'],
-                    onClick: (e) => {
-                        const point = chartsDict.chart1.getElementsAtEventForMode(e, 'point', {intersect: true}, true);
-                        if (point[0]) {
-                            chartsDict['side-chart'].data = chartsData['sideChart' + point[0].index];
-                            chartsDict['side-chart'].update();
-                        }
-                    }
-                };
-                chartsDict.chart1.update();
+            case 'detail-chart-sup-regions':
+                if (!chartsDict['superficieRegion'])
+                    chartSupRegion();
+                switchChart('superficieFrance', (canvasId) => chartSupRegions(canvasId), 'detail-1-chart');
                 break;
         }
     }
@@ -128,12 +237,12 @@ document.addEventListener('scroll-scene-exit', (event) => {
     switch (step) {
         case 'intro-aucun-habitant':
             if (!readingDirection) {
-                switch_figure('intro', '<img src="data/france.png">');
+                switchFigure('intro', '<img src="data/france.png">');
             }
             break;
-        case 'detail-chart-1':
+        case 'detail-chart-sup-france':
             if (!readingDirection) {
-                switch_figure('side-figure', '<img src="data/france-aucun-habitant.png">');
+                switchFigure('side-figure', '<img src="data/france-aucun-habitant.png">');
             }
             break;
         case 'detail-chart-2':
