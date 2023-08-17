@@ -222,9 +222,11 @@ document.addEventListener('scroll-scene-enter', (event) => {
                 }
                 break;
             case 'detail-chart-sup-regions':
-                if (!chartsDict['superficieRegion'])
-                    chartSupRegion();
-                switchChart('superficieFrance', (canvasId) => chartSupRegions(canvasId), 'detail-1-chart');
+                if (readingDirection) {
+                    if (!chartsDict['superficieRegion'])
+                        chartSupRegion();
+                    switchChart('superficieFrance', (canvasId) => chartSupRegions(canvasId), 'detail-1-chart');
+                }
                 break;
         }
     }
