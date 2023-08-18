@@ -12,6 +12,10 @@ const franceRegions = ['Île-de-France', 'Centre-Val de Loire', 'Bourgogne-Franc
    Changer le paramètre par défaut pour mettre la même valeur que l’activation permet de la récupérer.
    Par contre, cela veut dire que redimensionner la fenêtre relance l’animation (normalement, c’est ok). */
 Chart.defaults.transitions.resize.animation.duration = Chart.defaults.transitions.active.animation.duration;
+// Permet d’avoir des graphiques plus responsives
+// Voir https://www.chartjs.org/docs/latest/configuration/responsive.html
+Chart.defaults.maintainAspectRatio = false;
+
 
 let chartsDict = {}; // Stocke les références aux graphiques pour y réaccéder
 let chartsData = { // Stocke les données des graphiques pour initialiser ou les mettre à jour
@@ -197,6 +201,7 @@ function chartSupRegion() {
         type: 'pie',
         data: chartsData.superficieRegion[0],
         options: {
+            maintainAspectRatio: true, // Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour éviter qu’ils ne débordent à l’infini
             plugins: {
                 title: {
                     display: true,

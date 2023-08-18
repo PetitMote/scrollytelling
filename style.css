@@ -168,10 +168,13 @@ scroll-scene {
     opacity: 100%;
 }
 
-canvas {
+/* Ces paramètres ne sont pas nécessaires
+Voir https://www.chartjs.org/docs/latest/configuration/responsive.html
+Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour éviter qu’ils ne débordent à l’infini */
+/*canvas {
     height: 100%;
     margin: 10px auto;
-}
+}*/
 
 
 .side-by-side {
