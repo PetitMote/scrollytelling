@@ -61,7 +61,7 @@
             <scroll-scene step="detail-chart-sup-regions">
                 <h2>Par région</h2>
                 <p>La surface inhabitée est très variable selon les régions, aussi bien en total qu’en proportion.</p>
-                <canvas id="chart-sup-region"></canvas>
+                <div><canvas id="chart-sup-region"></canvas></div>
             </scroll-scene>
         </div>
         <figure id="side-figure">
@@ -69,9 +69,24 @@
         </figure>
     </div>
     <div class="paging">
-        <scroll-scene step="hide map">
-            <h2>Scène pleine page</h2>
-            <p>On continue</p>
+        <scroll-scene step="chart-sup-regions-paging">
+            <h2>La même donnée</h2>
+            <p>Présentée en liste de graphiques</p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+                <div><canvas class="chart-sup-region-liste"></canvas></div>
+            </div>
         </scroll-scene>
     </div>
 </main>

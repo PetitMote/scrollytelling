@@ -197,7 +197,7 @@ function chartSupRegions(canvasId) {
 
 function chartSupRegion() {
     const canvas = document.getElementById('chart-sup-region');
-    chartsDict['superficieRegion'] = new Chart(canvas, {
+    chartsDict.superficieRegion = new Chart(canvas, {
         type: 'pie',
         data: chartsData.superficieRegion[0],
         options: {
@@ -210,6 +210,31 @@ function chartSupRegion() {
             }
         }
     })
+}
+
+
+function chartSupRegionList() {
+    const canvasList = document.getElementsByClassName('chart-sup-region-liste');
+    let i = 0;
+    chartsDict.superficieRegionList = [];
+    for (const canvas of canvasList) {
+        chartsDict.superficieRegionList[i] = new Chart(canvas, {
+            type: 'pie',
+            data: chartsData.superficieRegion[i],
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: franceRegions[i],
+                    },
+                    legend : {
+                        display: false
+                    }
+                }
+            }
+        })
+        i++;
+    }
 }
 
 
@@ -239,6 +264,11 @@ document.addEventListener('scroll-scene-enter', (event) => {
                     switchChart('superficieFrance', (canvasId) => chartSupRegions(canvasId), 'detail-1-chart');
                 }
                 break;
+            case 'chart-sup-regions-paging':
+                if (readingDirection) {
+                    chartSupRegionList();
+                }
+                break;
         }
     }
 );
@@ -258,7 +288,9 @@ document.addEventListener('scroll-scene-exit', (event) => {
                 switchFigure('side-figure', '<img src="data/france-aucun-habitant.png">');
             }
             break;
-        case 'detail-chart-2':
+        case 'detail-chart-sup-regions':
+            break;
+        case 'chart-sup-regions-paging':
             break;
     }
 });
