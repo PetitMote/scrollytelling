@@ -234,6 +234,17 @@ Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour
     background-color: var(--background-color-transparent);
 }
 
+@media (width < 900px) {
+    .full scroll-scene > div {
+        max-width: 37vw;
+    }
+}
+
+@media (width < 700px) {
+    .full scroll-scene > div {
+        max-width: 50vw;
+    }
+}
 
 .paging {
     padding: 50px 20px;
