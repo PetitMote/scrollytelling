@@ -21,4 +21,4 @@ Geographical data is from IGN
 
 ## License
 
-Under the MIT License, this code is free to use, update, modify, distribute, as you wish. See [LICENSE.md](LICENSE.txt).
+Under the MIT License, this code is free to use, update, modify, distribute, as you wish. See [LICENSE](LICENSE.txt).
