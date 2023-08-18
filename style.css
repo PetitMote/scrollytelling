@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -206,7 +208,6 @@ Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour
 }
 
 
-
 .full {
     min-height: 100vh;
     box-shadow: var(--shadow-bottom);
@@ -216,6 +217,7 @@ Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour
 .full figure {
     z-index: -999;
 }
+
 .full figure > img {
     display: block;
     height: 100%;
@@ -234,9 +236,35 @@ Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour
     background-color: var(--background-color-transparent);
 }
 
+
+.paging {
+    padding: 50px 20px;
+    min-height: 100vh;
+    width: 50vw;
+    margin: auto;
+}
+
+/* Media queries */
+
+@media (orientation: portrait) {
+    .full scroll-scene > div {
+        max-width: 37vw;
+    }
+
+    .paging {
+        width: 75vw;
+    }
+}
+
 @media (width < 900px) {
     .full scroll-scene > div {
         max-width: 37vw;
+    }
+}
+
+@media (width < 800px) {
+    .paging {
+        width: 75vw;
     }
 }
 
@@ -246,18 +274,6 @@ Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour
     }
 }
 
-.paging {
-    padding: 50px 20px;
-    min-height: 100vh;
-    width: 50vw;
-    margin: auto;
-}
-
-@media (width < 800px) {
-    .paging {
-        width: 75vw;
-    }
-}
 
 @media (width < 600px) {
     .paging {
