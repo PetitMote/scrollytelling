@@ -257,7 +257,7 @@ function mapHabitants() {
     const mapContainer = document.querySelector('#map-figure > div')
     mapDict.carteHabitants = L.map(mapContainer, {preferCanvas: true}).setView([47, 3], 6);
     osmLayer.addTo(mapDict.carteHabitants);
-    geoJsonToLayer('data/habitants_ici_simplif.geojson', mapDict.carteHabitants,{
+    geoJsonToLayer('data/habitants_ici_simplif.geojson', mapDict.carteHabitants, {
         style: {
             color: '#fa210f',
             weight: 0,
