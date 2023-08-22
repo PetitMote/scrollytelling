@@ -165,6 +165,7 @@ scroll-scene {
     min-height: 60vh;
     opacity: 50%;
     z-index: 999;
+    transition: opacity 250ms ease-in-out;
 }
 
 .is-active {

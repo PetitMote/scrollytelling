@@ -1,11 +1,4 @@
-// let map = L.map('map').setView([51.505, -0.09], 13);
-//
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-// }).addTo(map);
-
-const franceRegions = ['Île-de-France', 'Centre-Val de Loire', 'Bourgogne-Franche-Comté', 'Normandie', 'Hauts-de-France', 'Grand Est', 'Pays de la Loire', 'Bretagne', 'Nouvelle-Aquitaine', 'Occitanie', 'Auvergne-Rhône-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Corse'];
+/* Paramètres globaux pour ChartJS*/
 
 /* À cause des réglages du CSS, le navigateur a tendance à redimensionner le canvas du graphique.
    Par défaut, Chart.js désactive les animations de resize, et l’animation d’activation était supplantée par le resize
@@ -17,7 +10,16 @@ Chart.defaults.transitions.resize.animation.duration = Chart.defaults.transition
 Chart.defaults.maintainAspectRatio = false;
 
 
-let chartsDict = {}; // Stocke les références aux graphiques pour y réaccéder
+/* Constantes */
+
+const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+})
+const franceRegions = ['Île-de-France', 'Centre-Val de Loire', 'Bourgogne-Franche-Comté', 'Normandie', 'Hauts-de-France', 'Grand Est', 'Pays de la Loire', 'Bretagne', 'Nouvelle-Aquitaine', 'Occitanie', 'Auvergne-Rhône-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Corse'];
+
+
+let chartsDict = {}; // Stocke les références aux graphiques Chartjs pour y réaccéder
 let chartsData = { // Stocke les données des graphiques pour initialiser ou les mettre à jour
     superficieFrance: {
         labels: ['Aucun habitant', 'Présence d’habitants'],
@@ -139,7 +141,10 @@ let chartsData = { // Stocke les données des graphiques pour initialiser ou les
             ]
         }]
 };
+let mapDict = {}; // Stock les références aux cartes Leaflet
 
+
+/* Fonctions réutilisables */
 
 function switchFigure(figureId, newContent) {
     const element = document.getElementById(figureId);
@@ -160,6 +165,14 @@ function switchChart(oldChartId, newChartFunction, canvasId) {
     newChartFunction(canvasId);
 }
 
+
+async function geoJsonToLayer(geoJson, map, options) {
+    const response = await fetch(geoJson);
+    const data = await response.json();
+    return L.geoJson(data, options).addTo(map);
+}
+
+/* Fonctions de créations de graphiques */
 
 function chartSupFrance(canvasId) {
     const canvas = document.getElementById(canvasId);
@@ -227,7 +240,7 @@ function chartSupRegionList() {
                         display: true,
                         text: franceRegions[i],
                     },
-                    legend : {
+                    legend: {
                         display: false
                     }
                 }
@@ -237,6 +250,21 @@ function chartSupRegionList() {
     }
 }
 
+
+/* Fonctions de création de cartes */
+
+function mapHabitants() {
+    const mapContainer = document.querySelector('#map-figure > div')
+    mapDict.carteHabitants = L.map(mapContainer, {preferCanvas: true}).setView([47, 3], 6);
+    osmLayer.addTo(mapDict.carteHabitants);
+    geoJsonToLayer('data/habitants_ici_simplif.geojson', mapDict.carteHabitants,{
+        style: {
+            color: '#fa210f',
+            weight: 0,
+            opacity: 0.6
+        }
+    });
+}
 
 document.addEventListener('scroll-scene-enter', (event) => {
         const step = event.detail.element.getAttribute('step');
@@ -265,9 +293,34 @@ document.addEventListener('scroll-scene-enter', (event) => {
                 }
                 break;
             case 'chart-sup-regions-paging':
-                if (readingDirection) {
+                if (!chartsDict.superficieRegionList) {
                     chartSupRegionList();
                 }
+                break;
+            case 'carte-habitants':
+                if (!mapDict.carteHabitants)
+                    mapHabitants();
+                mapDict.carteHabitants.setView([47, 3], 6)
+                break;
+            case 'carte-habitants-grand-est':
+                if (!mapDict.carteHabitants)
+                    mapHabitants();
+                mapDict.carteHabitants.setView([48.2, 5], 8)
+                break;
+            case 'carte-habitants-parcs-nationaux':
+                if (!mapDict.carteHabitants)
+                    mapHabitants();
+                mapDict.carteHabitants.setView([44.2, 4.5], 8)
+                break;
+            case 'carte-habitants-landes':
+                if (!mapDict.carteHabitants)
+                    mapHabitants();
+                mapDict.carteHabitants.setView([44.5, 0], 8)
+                break;
+            case 'carte-habitants-ouest':
+                if (!mapDict.carteHabitants)
+                    mapHabitants();
+                mapDict.carteHabitants.setView([48, -1], 8)
                 break;
         }
     }
@@ -291,6 +344,16 @@ document.addEventListener('scroll-scene-exit', (event) => {
         case 'detail-chart-sup-regions':
             break;
         case 'chart-sup-regions-paging':
+            break;
+        case 'carte-habitants':
+            break;
+        case 'carte-habitants-grand-est':
+            break;
+        case 'carte-habitants-parcs-nationaux':
+            break;
+        case 'carte-habitants-landes':
+            break;
+        case 'carte-habitants-ouest':
             break;
     }
 });
