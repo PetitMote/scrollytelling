@@ -1,5 +1,6 @@
 /* Paramètres globaux pour ChartJS*/
 
+Chart.defaults.locale = 'fr-FR';
 /* À cause des réglages du CSS, le navigateur a tendance à redimensionner le canvas du graphique.
    Par défaut, Chart.js désactive les animations de resize, et l’animation d’activation était supplantée par le resize
    Changer le paramètre par défaut pour mettre la même valeur que l’activation permet de la récupérer.
