@@ -9,6 +9,9 @@ Chart.defaults.transitions.resize.animation.duration = Chart.defaults.transition
 // Permet d’avoir des graphiques plus responsives
 // Voir https://www.chartjs.org/docs/latest/configuration/responsive.html
 Chart.defaults.maintainAspectRatio = false;
+// Utilisation des couleurs Auran
+Chart.defaults.plugins.colors.enabled = false;
+Chart.register(aurancolors);
 
 
 /* Constantes */
