@@ -39,7 +39,7 @@ const aurancolors = {
         else {
             let i = 0;
             for (const dataset of datasets) {
-                dataset.backgroundColor = COLORS[i % COLORS.length] + "88";
+                dataset.backgroundColor = COLORS[i % COLORS.length] + "80";
                 dataset.borderColor = COLORS[i % COLORS.length];
                 i++;
             }
