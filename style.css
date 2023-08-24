@@ -281,10 +281,3 @@ Certains graphiques nécessitent de remettre l’option maintainAspectRatio pour
         width: 100vw;
     }
 }
-
-
-/*Specific figures*/
-
-#map {
-    height: 100%;
-}
