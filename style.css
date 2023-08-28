@@ -108,8 +108,8 @@ header {
     background: radial-gradient(ellipse 20% 60% at 85% 100%, #FFFFFF60, #FFFFFF00),
     radial-gradient(ellipse 20% 60% at 10% 90%, #FFFFFF60, #FFFFFF00),
     radial-gradient(ellipse 20% 60% at 60% 0%, #FFFFFF60, #FFFFFF00),
-    radial-gradient(ellipse 20% 30% at 100% 0%, #3da7a540, #b4eec580 100%, #FFFFFF00 100%),
-    radial-gradient(ellipse 20% 120% at 65% 100%, #3da7a580, #3da7a580 20%, #b4eec580),
+    radial-gradient(ellipse 20% 30% at 100% 0%, #3da7a540, #b4eec580 100%, #FFFFFF00 120%),
+    radial-gradient(ellipse 20% 120% at 65% 100%, #3da7a5, #3da7a5 20%, #b4eec580 100%, #FFFFFF00 120%),
     radial-gradient(ellipse 30% 120% at 25% 40%, #3da7a5, #3da7a5 20%, #b4eec5);
     /*background: var(--main-color);*/
     color: var(--background-color);
