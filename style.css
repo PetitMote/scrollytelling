@@ -92,7 +92,7 @@ scroll-scene {
 
 /* Media queries */
 
-@media (max-aspect-ratio: 11/16) {
+@media (max-aspect-ratio: 4/5) {
     .side-by-side {
         grid-template-columns: auto;
         grid-template-rows: 33vh auto;
