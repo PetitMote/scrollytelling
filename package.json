@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bulma": "^1.0.0",
+    "sass": "^1.74.1"
+  },
+  "scripts": {
+    "build-bulma": "sass --load-path=node_modules sass/scrollytelling.scss static/scrollytelling.css",
+    "start": "npm run build-bulma -- --watch"
+  }
+}

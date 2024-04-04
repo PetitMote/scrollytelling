@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Les endroits en France où personne n’habite</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/scrollytelling.css">
+    <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
 </head>
 <body class="has-navbar-fixed-top has-navbar-fixed-bottom">
 <header class="navbar is-fixed-top has-background-primary">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="https://www.auran.org">
-            <img src="auran-logoblanc.png">
+    <div class="navbar-brand" style="width: 100%">
+        <a class="navbar-item py-0" href="https://www.auran.org">
+            <img src="auran-logoblanc.png" style="max-height: calc(var(--bulma-navbar-height) - 10px)">
         </a>
-        <div class="navbar-item">
-            <h1 class="subtitle is-4 has-text-white">Les endroits en France où personne n’habite</h1>
+        <div class="navbar-item" style="width: 100%">
+            <svg viewBox="0 0 520 20" class="subtitle has-text-wite">
+                <!-- Changer le texte avec le titre voulu, puis adapter la 3e valeur de la viewBox au-dessus pour adapter la largeur apparente du motif -->
+                <text x="0" y="17" fill="#FFFFFF">Les endroits en France où personne n’habite</text>
+            </svg>
         </div>
     </div>
 </header>
@@ -189,7 +192,7 @@
 </div>
 <footer class="navbar is-fixed-bottom has-background-primary">
     <div class="navbar-brand">
-        <div class="navbar-item">Footer</div>
+        <div class="navbar-item has-text-primary-invert">Footer</div>
     </div>
 </footer>
 <script src="https://unpkg.com/scroll-scene-element/dist/scroll-scene-element.js" type="module"></script>
@@ -197,7 +200,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="chartjs-plugin-auran-colors.js"></script>
-<script src="side-by-side.js" type="module"></script>
+<script src="static/chartjs-plugin-auran-colors.js"></script>
+<script src="static/side-by-side.js" type="module"></script>
 </body>
 </html>
