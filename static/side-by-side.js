@@ -349,12 +349,12 @@ document.addEventListener('scroll-scene-exit', (event) => {
     switch (step) {
         case 'intro-aucun-habitant':
             if (!readingDirection) {
-                switchFigure('intro', '<img src="../data/france.png">');
+                switchFigure('intro', '<img src="data/france.png">');
             }
             break;
         case 'detail-chart-sup-france':
             if (!readingDirection) {
-                switchFigure('side-figure', '<img src="../data/france-aucun-habitant.png">');
+                switchFigure('side-figure', '<img src="data/france-aucun-habitant.png">');
             }
             break;
         case 'detail-chart-sup-regions':
