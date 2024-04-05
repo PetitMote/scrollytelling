@@ -20,6 +20,18 @@ const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 })
+/* Quelques autres liens pour layer de base utilisables :
+Fond OpenStreetMap par défaut :
+https://tile.openstreetmap.org/{z}/{x}/{y}.png
+OpenStreetMap France :
+https://b.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png
+Fond très clair, bien quand très zoomé pour avoir un détail de rue et de bâti sans être très présent
+https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png
+Fond coloré mais plus doux qu’OSM, bien plutôt pour des cartos à l’échelle région
+https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png
+Fond "humanitaire" d’OSM France, ilébo :
+https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png
+ */
 const franceRegions = ['Île-de-France', 'Centre-Val de Loire', 'Bourgogne-Franche-Comté', 'Normandie', 'Hauts-de-France', 'Grand Est', 'Pays de la Loire', 'Bretagne', 'Nouvelle-Aquitaine', 'Occitanie', 'Auvergne-Rhône-Alpes', 'Provence-Alpes-Côte d\'Azur', 'Corse'];
 
 
