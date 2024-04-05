@@ -12,6 +12,10 @@ Chart.defaults.maintainAspectRatio = false;
 // Utilisation des couleurs Auran
 Chart.defaults.plugins.colors.enabled = false;
 Chart.register(aurancolors);
+// Polices
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.font.weight = 300;
+Chart.defaults.font.size = 14;
 
 
 /* Constantes */
