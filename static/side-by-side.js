@@ -278,7 +278,7 @@ document.addEventListener('scroll-scene-enter', (event) => {
         switch (step) {
             case 'intro-aucun-habitant':
                 if (readingDirection) {
-                    switchFigure('intro', '<img src="../data/france-aucun-habitant.png">');
+                    switchFigure('intro', '<img src="data/france-aucun-habitant.png">');
                 }
                 break;
             case 'detail-chart-sup-france':
@@ -327,16 +327,16 @@ document.addEventListener('scroll-scene-enter', (event) => {
                 mapDict.carteHabitants.setView([48, -1], 8)
                 break;
             case 'image-grand-est':
-                switchFigure('side-demo-scroll', '<img src="../data/grand-est.png">');
+                switchFigure('side-demo-scroll', '<img src="data/grand-est.png">');
                 break;
             case 'image-parcs-nationaux':
-                switchFigure('side-demo-scroll', '<img src="../data/parcs-nationaux.png">');
+                switchFigure('side-demo-scroll', '<img src="data/parcs-nationaux.png">');
                 break;
             case 'image-landes':
-                switchFigure('side-demo-scroll', '<img src="../data/landes.png">');
+                switchFigure('side-demo-scroll', '<img src="data/landes.png">');
                 break;
             case 'image-grand-ouest':
-                switchFigure('side-demo-scroll', '<img src="../data/grand-ouest.png">');
+                switchFigure('side-demo-scroll', '<img src="data/grand-ouest.png">');
                 break;
         }
     }
