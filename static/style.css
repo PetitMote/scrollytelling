@@ -1,13 +1,5 @@
 @charset "utf-8";
 
-html {
-    --main-color: #0F1626;
-    --background-color: #F5F5F5;
-    --background-color-transparent: #F5F5F580;
-    --background-color-dark: #E0E0E0;
-    --shadow-bottom: 0 3px 3px #808080A0;
-}
-
 img {
     height: 100%;
     max-width: 100%;
@@ -44,6 +36,10 @@ scroll-scene {
 
 .side-by-side scroll-scene {
     padding: 5vh 5vw;
+}
+
+.side-by-side scroll-scene:last-child {
+    min-height: 100vh;
 }
 
 .side-by-side figure, .full figure {
