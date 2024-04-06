@@ -87,19 +87,19 @@
             <h2 class="title">Par région</h2>
             <p>La surface inhabitée est très variable selon les régions, aussi bien en total qu’en proportion.</p>
             <p>Cliquez sur le graphique à côté pour changer de région.</p>
-            <div>
+            <div class="container sbs-inside-chart">
                 <canvas id="chart-sup-region"></canvas>
             </div>
         </scroll-scene>
     </div>
-    <figure id="side-figure" class="has-background-white">
+    <figure id="side-figure" class="has-background">
         <img src="data/france-aucun-habitant.png">
     </figure>
 </section>
 <div class="container">
     <img src="static/hachures.svg" alt="Hachures de transition" height="45">
 </div>
-<section class="section px-0 container is-max-widescreen paging">
+<section class="section container is-max-widescreen paging">
     <scroll-scene step="chart-sup-regions-paging">
         <h2 class="title">La même donnée</h2>
         <p>Présentée en liste de graphiques</p>
@@ -213,7 +213,7 @@
             <scroll-scene step="image-grand-ouest"></scroll-scene>
         </div>
     </div>
-    <figure id="side-demo-scroll">
+    <figure id="side-demo-scroll" class="has-background">
         <img src="data/france-aucun-habitant.png">
     </figure>
 </section>

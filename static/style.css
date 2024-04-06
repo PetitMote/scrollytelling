@@ -51,6 +51,11 @@ scroll-scene {
     transition: opacity 300ms ease-in-out;
 }
 
+/* Graphiques "à l’intérieur" du texte d’un side by side */
+.sbs-inside-chart {
+    max-width: 60vw; /* Une taille maximale, sinon sur mobile ils deviennent énormes */
+}
+
 .chart {
     display: flex;
     align-content: center;
