@@ -20,9 +20,21 @@ Chart.defaults.font.size = 14;
 
 /* Constantes */
 
+// HTML strings
+const figureFrance = '<img src="data/france.png" alt="Contour géographique de la France Métropolitaine">';
+const figureFranceAucunHabitant = '<img src="data/france-aucun-habitant.png" ' +
+    'alt="France métropolitaine et mise en valeur des zones sans aucun habitant.">';
+const figureCanvasChartDetails1 = '<div class="chart"><canvas id="detail-1-chart">' +
+    '<p>17 500 000 hectares sans aucun habitant contre 37 500 000 hectares avec habitants</p>' +
+    '</canvas></div>';
+const figureZoomGrandEst = '<img src="data/grand-est.png" alt="Zoom sur Grand Est">';
+const figureZoomParcsNationaux = '<img src="data/parcs-nationaux.png" alt="Zoom Sud-Est">';
+const figureZoomLandes = '<img src="data/landes.png" alt="Zoom Landes">';
+const figureZoomGrandOuest = '<img src="data/grand-ouest.png" alt="Zoom Bretagne et Pays de la Loire">';
+
 const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 })
 /* Quelques autres liens pour layer de base utilisables :
 Fond OpenStreetMap par défaut :
@@ -179,10 +191,12 @@ function switchFigure(figureId, newContent) {
 }
 
 
-function switchChart(oldChartId, newChartFunction, canvasId) {
+function switchChart(oldChartId, newChartFunction, canvasId, altHTML) {
     chartsDict[oldChartId].destroy();
     delete chartsDict[oldChartId];
     newChartFunction(canvasId);
+    let canvas = document.getElementById(canvasId);
+    canvas.innerHTML = altHTML;
 }
 
 
@@ -294,22 +308,37 @@ document.addEventListener('scroll-scene-enter', (event) => {
         switch (step) {
             case 'intro-aucun-habitant':
                 if (readingDirection) {
-                    switchFigure('intro', '<img src="data/france-aucun-habitant.png">');
+                    switchFigure(
+                        'intro',
+                        figureFranceAucunHabitant
+                    );
                 }
                 break;
             case 'detail-chart-sup-france':
                 if (readingDirection) {
-                    switchFigure('side-figure', '<div class="chart"><canvas id="detail-1-chart"></canvas></div>');
+                    switchFigure(
+                        'side-figure',
+                        figureCanvasChartDetails1
+                    );
                     setTimeout(chartSupFrance, 350, 'detail-1-chart');
                 } else {
-                    switchChart('superficieFranceRegions', (canvasId) => chartSupFrance(canvasId), 'detail-1-chart');
+                    switchChart(
+                        'superficieFranceRegions',
+                        (canvasId) => chartSupFrance(canvasId),
+                        'detail-1-chart',
+                        '<p>Test</p>'
+                    );
                 }
                 break;
             case 'detail-chart-sup-regions':
                 if (readingDirection) {
                     if (!chartsDict['superficieRegion'])
                         chartSupRegion();
-                    switchChart('superficieFrance', (canvasId) => chartSupRegions(canvasId), 'detail-1-chart');
+                    switchChart(
+                        'superficieFrance',
+                        (canvasId) => chartSupRegions(canvasId),
+                        'detail-1-chart'
+                    );
                 }
                 break;
             case 'chart-sup-regions-paging':
@@ -343,16 +372,28 @@ document.addEventListener('scroll-scene-enter', (event) => {
                 mapDict.carteHabitants.setView([48, -1], 8)
                 break;
             case 'image-grand-est':
-                switchFigure('side-demo-scroll', '<img src="data/grand-est.png">');
+                switchFigure(
+                    'side-demo-scroll',
+                    figureZoomGrandEst
+                );
                 break;
             case 'image-parcs-nationaux':
-                switchFigure('side-demo-scroll', '<img src="data/parcs-nationaux.png">');
+                switchFigure(
+                    'side-demo-scroll',
+                    figureZoomParcsNationaux
+                );
                 break;
             case 'image-landes':
-                switchFigure('side-demo-scroll', '<img src="data/landes.png">');
+                switchFigure(
+                    'side-demo-scroll',
+                    figureZoomLandes
+                );
                 break;
             case 'image-grand-ouest':
-                switchFigure('side-demo-scroll', '<img src="data/grand-ouest.png">');
+                switchFigure(
+                    'side-demo-scroll',
+                    figureZoomGrandOuest
+                );
                 break;
         }
     }
@@ -365,12 +406,18 @@ document.addEventListener('scroll-scene-exit', (event) => {
     switch (step) {
         case 'intro-aucun-habitant':
             if (!readingDirection) {
-                switchFigure('intro', '<img src="data/france.png">');
+                switchFigure(
+                    'intro',
+                    figureFrance
+                );
             }
             break;
         case 'detail-chart-sup-france':
             if (!readingDirection) {
-                switchFigure('side-figure', '<img src="data/france-aucun-habitant.png">');
+                switchFigure(
+                    'side-figure',
+                    figureFranceAucunHabitant
+                );
             }
             break;
         case 'detail-chart-sup-regions':
