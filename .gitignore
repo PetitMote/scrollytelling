@@ -1,6 +1,6 @@
 /data/qgis/
 /.idea
 .idea/
+.idea/*
 /node_modules/
 /package-lock.json
-/node_modules/
