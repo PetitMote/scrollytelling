@@ -32,7 +32,7 @@ const figureZoomParcsNationaux = '<img src="data/parcs-nationaux.png" alt="Zoom 
 const figureZoomLandes = '<img src="data/landes.png" alt="Zoom Landes">';
 const figureZoomGrandOuest = '<img src="data/grand-ouest.png" alt="Zoom Bretagne et Pays de la Loire">';
 
-const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const osmLayer = L.tileLayer('https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 })

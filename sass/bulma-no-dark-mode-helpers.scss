@@ -1,0 +1,17 @@
+@forward "bulma/sass/utilities";
+@forward "bulma/sass/base";
+@forward "bulma/sass/elements";
+@forward "bulma/sass/form";
+@forward "bulma/sass/components";
+@forward "bulma/sass/grid";
+@forward "bulma/sass/layout";
+@forward "bulma/sass/base/skeleton";
+@forward "bulma/sass/helpers";
+
+@use "bulma/sass/themes/light";
+@use "bulma/sass/themes/setup";
+
+:root {
+  @include light.light-theme;
+  @include setup.setup-theme;
+}
